@@ -24,17 +24,22 @@ void printLinkList(LinkList l);
 
 void printListNode(pLinearType elem);
 
+/**
+ * 	初始化顺序表
+ */
 pSeqList initSeqList() {
 	pSeqList p = NULL;
 
 	p = (pSeqList) malloc(sizeof(SeqList));
 	if (p == NULL) {
-		printf("malloc failed\n");
+		printf("[%s]malloc failed\n",__func__);
 	}
 	p->n = 0;
 	return p;
 }
-
+/**
+ * 	销毁顺序表
+ */
 status destorySeqList(pSeqList p) {
 	if (p == NULL) {
 		return OK;
@@ -44,11 +49,14 @@ status destorySeqList(pSeqList p) {
 	return OK;
 }
 
+/**
+ * 	查找第i个元素
+ */
 pLinearType findSeqList(pSeqList l, int index) {
 	pLinearType p = NULL;
 
 	if (index < 1 || index > SEQ_LIST_SIZE) {
-		printf("ERROR:Index is out of range\n");
+		printf("ERROR[%s]:Index is out of range\n",__func__);
 		return NULL;
 	}
 
@@ -56,16 +64,19 @@ pLinearType findSeqList(pSeqList l, int index) {
 	return p;
 }
 
+/**
+ * 	插入元素至index位置
+ */
 status insertSeqList(pSeqList l, int index, LinearType elem) {
 
 	int i, j;
 	if (index < 1 || index > SEQ_LIST_SIZE) {
-		printf("ERROR:Index is out of range\n");
+		printf("ERROR[%s]:Index is out of range\n",__func__);
 		return ERROR;
 	}
 
 	if (l->n == SEQ_LIST_SIZE) {
-		printf("ERROR:List is full\n");
+		printf("ERROR[%s]:List is full\n",__func__);
 		return ERROR;
 	}
 
@@ -81,30 +92,34 @@ status insertSeqList(pSeqList l, int index, LinearType elem) {
 	return OK;
 }
 
+/**
+ * 	删除第i个元素
+ */
 status deleteSeqList(pSeqList l, int index) {
 	int i;
 	if (index < 1 || index > l->n) {
-		printf("ERROR:Index is out of range\n");
+		printf("ERROR[%s]:Index is out of range\n",__func__);
 		return ERROR;
 	}
 
 	if (l->n == 0) {
-		printf("ERROR:List is empty\n");
+		printf("ERROR[%s]:List is empty\n",__func__);
 		return ERROR;
 	}
 
 	i = index;
-//	j = index;
 	while (i < l->n) {
 		l->data[i-1] = l->data[i];
 		i++;
-//		j++;
 	}
 
 	l->n--;
 	return OK;
 }
 
+/**
+ * 	输出顺序元素
+ */
 void printSeqList(pSeqList l) {
 	int i = 0;
 	for (i = 0; i < l->n; i++) {
@@ -112,11 +127,14 @@ void printSeqList(pSeqList l) {
 	}
 }
 
+/**
+ * 	初始化链表节点
+ */
 LinkList initLinkedNode(LinearType data) {
 	LinkList node = NULL;
 	node = (LinkList) malloc(sizeof(LinkedNode));
 	if (node == NULL) {
-		printf("malloc failed\n");
+		printf("ERROR[%s]:malloc failed\n",__func__);
 	}
 	node->link = NULL;
 	//fixme:modify as needed
@@ -124,6 +142,9 @@ LinkList initLinkedNode(LinearType data) {
 	return node;
 }
 
+/**
+ * 	销毁链表节点
+ */
 status destoryLinedNode(LinkList p) {
 	if (p == NULL) {
 		return OK;
@@ -133,6 +154,9 @@ status destoryLinedNode(LinkList p) {
 	return OK;
 }
 
+/**
+ * 	查找第i个元素
+ */
 LinkList findLinkList(LinkList l, int index) {
 	LinkList p;
 	int i;
@@ -148,6 +172,9 @@ LinkList findLinkList(LinkList l, int index) {
 	return NULL;
 }
 
+/**
+ * 	插入元素至 index位置
+ */
 status insertLinkList(LinkList l, int index, LinkList elem) {
 	LinkList p;
 
@@ -171,6 +198,9 @@ status insertLinkList(LinkList l, int index, LinkList elem) {
 	return OK;
 }
 
+/**
+ * 	删除第i个元素
+ */
 status deleteLinkList(LinkList l, int index) {
 	LinkList p, q;
 
@@ -191,6 +221,9 @@ status deleteLinkList(LinkList l, int index) {
 	return OK;
 }
 
+/**
+ * 	打印链表
+ */
 void printLinkList(LinkList l) {
 	LinkList p;
 
@@ -204,6 +237,9 @@ void printLinkList(LinkList l) {
 
 }
 
+/**
+ * 	打印链表节点
+ */
 //fixme:modify as needed
 void printListNode(pLinearType elem) {
 	printf("%c ", *elem);
