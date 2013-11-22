@@ -33,7 +33,7 @@ boolean isEmptyLinkStack(pLinkStack s);
 status clearLinkStack(pLinkStack s);
 pLinkStackNode getTopLinkStack(pLinkStack s);
 status pushLinkStack(pLinkStack s,pLinkStackNode node);
-status popLinkStack(pLinkStack s,pLinkStackNode elem);
+status popLinkStack(pLinkStack s,pLinkStackNode *elem);
 status printLinkStack(pLinkStack s);
 status printLinkStackElem(pLinkStackNode p);
 
@@ -374,16 +374,16 @@ status pushLinkStack(pLinkStack s,pLinkStackNode node){
 /**
  * 	链栈出栈
  */
-status popLinkStack(pLinkStack s,pLinkStackNode elem){
+status popLinkStack(pLinkStack s,pLinkStackNode *elem){
 	pLinkStackNode p = NULL,n = NULL;
 	if(s == NULL){
 		printf("[%s]stack not exist!\n",__func__);
-		elem = NULL;
+		*elem = NULL;
 		return ERROR;
 	}
 	if(isEmptyLinkStack(s)){
 		printf("[%s]stack is empty!\n",__func__);
-		elem = NULL;
+		*elem = NULL;
 		return ERROR;
 	}
 	n = s->base;
@@ -395,7 +395,7 @@ status popLinkStack(pLinkStack s,pLinkStackNode elem){
 	if(p != NULL){
 		p->next = NULL;
 	}
-	elem = p;
+	*elem = p;
 	s->stack_size--;
 	return OK;
 }

@@ -59,7 +59,7 @@ boolean isEmptyLinkStack(pLinkStack s);
 status clearLinkStack(pLinkStack s);
 pLinkStackNode getTopLinkStack(pLinkStack s);
 status pushLinkStack(pLinkStack s,pLinkStackNode node);
-status popLinkStack(pLinkStack s,pLinkStackNode elem);
+status popLinkStack(pLinkStack s,pLinkStackNode *elem);
 status printLinkStack(pLinkStack s);
 status printLinkStackElem(pLinkStackNode p);
 
